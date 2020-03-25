@@ -714,6 +714,74 @@ public final class Keychain {
             #endif
         }
     }
+    
+    
+    public func add(_ value: String, key: String) throws {
+        guard let data = value.data(using: .utf8, allowLossyConversion: false) else {
+            print("failed to convert string to data")
+            throw Status.conversionError
+        }
+        try add(data, key: key)
+    }
+    
+    public func add(_ value: Data, key: String) throws {
+        var (attributes, error) = options.attributes(key: key, value: value)
+        if let error = error {
+            print(error.localizedDescription)
+            throw error
+        }
+        
+        options.attributes.forEach { attributes.updateValue($1, forKey: $0) }
+        
+        let status = SecItemAdd(attributes as CFDictionary, nil)
+        switch status {
+        case errSecSuccess:
+            // Added successful
+            return
+        case errSecDuplicateItem:
+            let status = SecItemDelete(attributes as CFDictionary)
+            if status != errSecSuccess && status != errSecItemNotFound {
+                throw securityError(status: status)
+            }
+            // Try adding again
+            try self.add(value, key: key)
+        default:
+            // Some error occured
+            throw securityError(status: status)
+        }
+    }
+    
+    public func update(_ value: String, key: String) throws {
+        guard let data = value.data(using: .utf8, allowLossyConversion: false) else {
+            print("failed to convert string to data")
+            throw Status.conversionError
+        }
+        try update(data, key: key)
+    }
+
+    public func update(_ value: Data, key: String) throws {
+        var (attributes, error) = options.attributes(key: key, value: value)
+        var query = options.query()
+        query[AttributeAccount] = key
+        
+        if let error = error {
+            print(error.localizedDescription)
+            throw error
+        }
+        
+        options.attributes.forEach { attributes.updateValue($1, forKey: $0) }
+        
+        let status = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
+        switch status {
+        case errSecSuccess:
+            // Added successful
+            return
+        default:
+            // Some error occured
+            throw securityError(status: status)
+        }
+    }
+
 
     // MARK:
 
@@ -744,10 +812,16 @@ public final class Keychain {
     public func contains(_ key: String) throws -> Bool {
         var query = options.query()
         query[AttributeAccount] = key
+        
+        #if os(iOS) || os(OSX)
+            if #available(iOS 9.0, OSX 10.11, *) {
+                query[UseAuthenticationUI] = UseAuthenticationUIFail
+            }
+        #endif
 
         let status = SecItemCopyMatching(query as CFDictionary, nil)
         switch status {
-        case errSecSuccess:
+        case errSecSuccess, errSecInteractionNotAllowed:
             return true
         case errSecItemNotFound:
             return false

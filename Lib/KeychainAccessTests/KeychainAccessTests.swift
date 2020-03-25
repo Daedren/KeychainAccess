@@ -1498,4 +1498,19 @@ class KeychainAccessTests: XCTestCase {
         }
         #endif
     }
+
+    func testAddString() {
+        let keychain = Keychain(service: "Twitter")
+        
+        XCTAssertNil(try! keychain.get("username"), "not stored username")
+        XCTAssertNil(try! keychain.get("password"), "not stored password")
+        
+        do { try keychain.add("kishikawakatsumi", key: "username") } catch {}
+        XCTAssertEqual(try! keychain.get("username"), "kishikawakatsumi", "stored username")
+        XCTAssertNil(try! keychain.get("password"), "not stored password")
+        
+        do { try keychain.add("password1234", key: "password") } catch {}
+        XCTAssertEqual(try! keychain.get("username"), "kishikawakatsumi", "stored username")
+        XCTAssertEqual(try! keychain.get("password"), "password1234", "stored password")
+    }
 }
