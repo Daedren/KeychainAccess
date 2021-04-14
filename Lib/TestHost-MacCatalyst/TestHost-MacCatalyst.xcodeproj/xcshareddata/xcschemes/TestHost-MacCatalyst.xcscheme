@@ -14,24 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "14DAEE8F1A51E1BE0070B77E"
-               BuildableName = "Example-iOS.app"
-               BlueprintName = "Example-iOS"
-               ReferencedContainer = "container:Example-iOS.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "14DAEEA41A51E1BE0070B77E"
-               BuildableName = "Example-iOSTests.xctest"
-               BlueprintName = "Example-iOSTests"
-               ReferencedContainer = "container:Example-iOS.xcodeproj">
+               BlueprintIdentifier = "14A98C4A235D284F00BBB893"
+               BuildableName = "TestHost-MacCatalyst.app"
+               BlueprintName = "TestHost-MacCatalyst"
+               ReferencedContainer = "container:TestHost-MacCatalyst.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -41,26 +27,7 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14DAEE8F1A51E1BE0070B77E"
-            BuildableName = "Example-iOS.app"
-            BlueprintName = "Example-iOS"
-            ReferencedContainer = "container:Example-iOS.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "14DAEEA41A51E1BE0070B77E"
-               BuildableName = "Example-iOSTests.xctest"
-               BlueprintName = "Example-iOSTests"
-               ReferencedContainer = "container:Example-iOS.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -77,10 +44,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14DAEE8F1A51E1BE0070B77E"
-            BuildableName = "Example-iOS.app"
-            BlueprintName = "Example-iOS"
-            ReferencedContainer = "container:Example-iOS.xcodeproj">
+            BlueprintIdentifier = "14A98C4A235D284F00BBB893"
+            BuildableName = "TestHost-MacCatalyst.app"
+            BlueprintName = "TestHost-MacCatalyst"
+            ReferencedContainer = "container:TestHost-MacCatalyst.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -94,10 +61,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14DAEE8F1A51E1BE0070B77E"
-            BuildableName = "Example-iOS.app"
-            BlueprintName = "Example-iOS"
-            ReferencedContainer = "container:Example-iOS.xcodeproj">
+            BlueprintIdentifier = "14A98C4A235D284F00BBB893"
+            BuildableName = "TestHost-MacCatalyst.app"
+            BlueprintName = "TestHost-MacCatalyst"
+            ReferencedContainer = "container:TestHost-MacCatalyst.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
